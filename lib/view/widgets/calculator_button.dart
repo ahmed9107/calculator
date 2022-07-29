@@ -1,4 +1,5 @@
 import 'package:calculator/provider/calculator_provider.dart';
+import 'package:calculator/view/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,25 +22,7 @@ class CalculatorButton extends StatelessWidget {
       fontWeight: FontWeight.bold,
       fontSize: mediaQuery.height/32.5
     );
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Theme.of(context).backgroundColor,
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).shadowColor,
-            offset: const Offset(4.0, 4.0),
-            spreadRadius: 0.5,
-            blurRadius: 5.0
-          ),
-          BoxShadow(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            offset: const Offset(-2.0, -2.0),
-            spreadRadius: 1,
-            blurRadius: 5.0
-          ),
-        ]
-      ),
+    return CustomContainer(
       child: InkWell(
         borderRadius: BorderRadius.circular(20.0),
         onTap: () {
@@ -53,7 +36,7 @@ class CalculatorButton extends StatelessWidget {
           child: Text(
               label,
               style: textStyle.copyWith(color: isColored
-                ? const Color(0xFFB8575E)
+                ? const Color(0xFFF3616B)
                 : Theme.of(context).primaryColorLight),
           ),
         ),

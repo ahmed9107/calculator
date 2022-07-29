@@ -19,6 +19,6 @@ List<CalculatorButton> buttons = <CalculatorButton>[
   const CalculatorButton(' + ', isColored: true, canBeFirst: false),
   const CalculatorButton('00'),
   const CalculatorButton('0'),
-  const CalculatorButton('000'),
+  const CalculatorButton('%'),
   const CalculatorButton('=', isColored: true, canBeFirst: false),
 ];

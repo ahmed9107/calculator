@@ -1,5 +1,6 @@
 import 'package:calculator/provider/calculator_provider.dart';
 import 'package:calculator/utils/constants/constants.dart';
+import 'package:calculator/view/widgets/custom_container.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,6 @@ class Calculator extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).backgroundColor,
         elevation: 1.0,
-        centerTitle: true,
         title: Text(
           'Calculator',
           style: TextStyle(
@@ -22,12 +22,26 @@ class Calculator extends StatelessWidget {
             fontWeight: FontWeight.bold),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
+          InkWell(
+            onTap: () {
               Navigator.pushNamed(context, '/history');
             },
-            icon: Icon(Icons.history, color: Theme.of(context).primaryColorLight),
+            child: CustomContainer(
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.all(10),
+              child: Icon(Icons.history, color: Theme.of(context).primaryColorLight),
+            ),
           ),
+          const SizedBox(width: 10),
+          InkWell(
+            onTap: (){},
+            child: CustomContainer(
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.all(10),
+              child: Icon(Icons.dark_mode, color: Theme.of(context).primaryColorLight),
+            ),
+          ),
+          const SizedBox(width: 10),
         ],
       ),
       body: Column(
