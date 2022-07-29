@@ -1,5 +1,4 @@
 import 'package:calculator/provider/calculator_provider.dart';
-import 'package:calculator/utils/constants/colors.dart';
 import 'package:calculator/utils/constants/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -11,21 +10,28 @@ class Calculator extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: const Text(
+        backgroundColor: Theme.of(context).backgroundColor,
+        elevation: 1.0,
+        centerTitle: true,
+        title: Text(
           'Calculator',
-          style: TextStyle(fontWeight: FontWeight.w400),
+          style: TextStyle(
+            color: Theme.of(context).primaryColorLight,
+            fontWeight: FontWeight.bold),
         ),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, '/history');
             },
-            icon: const Icon(Icons.history),
+            icon: Icon(Icons.history, color: Theme.of(context).primaryColorLight),
           ),
         ],
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
             width: mediaQuery.width,
@@ -34,12 +40,16 @@ class Calculator extends StatelessWidget {
               vertical: mediaQuery.width * 0.08,
               horizontal: mediaQuery.width * 0.06,
             ),
+            /* decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: AppColors.mainScreenColor
+            ), */
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 SizedBox(
-                  height: 20.0,
+                  height: 40.0,
                   child: ListView(
                     reverse: true,
                     scrollDirection: Axis.horizontal,
@@ -47,17 +57,23 @@ class Calculator extends StatelessWidget {
                       Consumer<CalculatorProvider>(
                         builder: (context, equation, child) => Text(
                           equation.equation,
-                          style: Theme.of(context).textTheme.caption,
+                          style: Theme.of(context).textTheme.caption!.copyWith(
+                            fontFamily: 'digital'
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 10.0),
+                const SizedBox(height: 20.0),
                 Consumer<CalculatorProvider>(
                   builder: (context, equation, child) => Text(
                     equation.result,
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                      fontFamily: 'digital',
+                      color: Theme.of(context).primaryColorLight,
+                      fontSize: 56.0
+                    ),
                   ),
                 ),
               ],
@@ -66,13 +82,13 @@ class Calculator extends StatelessWidget {
           Expanded(
             child: Container(
               width: double.infinity,
-              color: AppColors.buttonsBackgroundColor,
+              color: Theme.of(context).backgroundColor,
               child: GridView.count(
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(15.0),
-                crossAxisSpacing: 5.0,
+                crossAxisSpacing: 15.0,
                 childAspectRatio: 1.3,
-                mainAxisSpacing: 5.0,
+                mainAxisSpacing: 15.0,
                 crossAxisCount: 4,
                 children: buttons,
               ),
